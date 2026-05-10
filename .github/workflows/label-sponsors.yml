@@ -1,0 +1,27 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python (or another language)
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.x
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt
+    - name: Run Tests
+      run: |
+        pytest
